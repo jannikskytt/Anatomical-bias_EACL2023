@@ -1,7 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, Dense, LSTM, Bidirectional, Dropout
-from tensorflow.keras.optimizers import Adam
 from transformers import TFElectraModel
 
 #RNN model, ~4M parameters
@@ -21,10 +20,10 @@ def build_rnn(n_class=2):
 
 
 # ELECTRA model, ~13M parameters
-class HF_ClassificationModel(tf.keras.Model):
+class ELECTRA_ClassificationModel(tf.keras.Model):
    def __init__(self, num_labels=None, model_name=da_electra):
        '''
-       Hyperparametre modeleret efter HF
+       Hyperparameters similar to Huggingface implementation
        '''
        super().__init__(name="EHR_classification")
        self.electra = TFElectraModel.from_pretrained(model_name, from_pt=False)
